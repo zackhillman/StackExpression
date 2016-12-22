@@ -16,8 +16,6 @@ public class StackGUI extends GBFrame{
 	
 	private StackADT<String> stack; //Global variable StackADT, used for conversion
 	
-	Parser p;
-	
 	/**
 	 * This is the constructor method. The GUI objects are instantiated.
 	 * stack is not instantiated here.
@@ -41,23 +39,19 @@ public class StackGUI extends GBFrame{
 		try{
 			if (buttonObj == outputLinkedList) {
 				stack = new StackLinkedList<String>();
-				p = new Parser(stack);
+			
 			//	sizeF.setText(p.getResult(expressionF.getText()));
-				ArrayList<String> tokens = p.tokenize(expressionF.getText());
-				System.out.print("[");
-				for(String s : tokens){
-					System.out.print(s+",");
-				}
-				System.out.print("]");
+			//	ArrayList<String> tokens = Parser.tokenize(expressionF.getText(),stack);
+			
 				System.out.println();
 		//		System.out.println(p.tokenize(expressionF.getText()).toString());
-				System.out.println(p.getResult(expressionF.getText()));
+				System.out.println(Parser.parse(expressionF.getText(),stack));
 		//		messageBox(stack.toString(),300,200);
 	
 			}
 			else if(buttonObj == outputArray){
 				stack = new StackArray<String>(10);
-				p = new Parser(stack);
+				System.out.println(Parser.parse(expressionF.getText(),stack));
 			//	messageBox(stack.toString(),300,200);
 			}
 		}catch(Exception e){
